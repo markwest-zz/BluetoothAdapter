@@ -26,18 +26,19 @@ public class MainActivity extends AppCompatActivity {
             bluetoothAdapterService = new BluetoothAdapterService(this);
             bluetoothAdapterDto = bluetoothAdapterService.getBluetoothAdapterDto();
 
-            String name = bluetoothAdapterDto.getName();
-            TextView view = findViewById(R.id.name_textView);
-            view.setText(name);
+            if (bluetoothAdapterDto.getError() != null) {
+                String name = bluetoothAdapterDto.getName();
+                TextView view = findViewById(R.id.name_textView);
+                view.setText(name);
 
-            String address = bluetoothAdapterDto.getAddress();
-            view = findViewById(R.id.address_textView);
-            view.setText(address);
+                String address = bluetoothAdapterDto.getAddress();
+                view = findViewById(R.id.address_textView);
+                view.setText(address);
+            } else {
+                String error = bluetoothAdapterDto.getError();
+                TextView view = findViewById(R.id.error_textView);
+                view.setText(error);
+            }
         }
-    }
-
-    private void showErrorText(int messageId) {
-        TextView view = findViewById(R.id.error_textView);
-        view.setText(getString(messageId));
     }
 }
