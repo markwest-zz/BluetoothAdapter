@@ -6,6 +6,7 @@ package bluetooth.adapter.dto;
 public class BluetoothAdapterDto {
 
     private String address;
+    private String error;
     private int maximumAdvertisingDataLength;
     private String name;
     private int profileConnectionState;
@@ -16,6 +17,14 @@ public class BluetoothAdapterDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     public int getMaximumAdvertisingDataLength() {
