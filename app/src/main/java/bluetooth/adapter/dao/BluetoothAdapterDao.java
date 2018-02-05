@@ -1,6 +1,8 @@
 package bluetooth.adapter.dao;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import bluetooth.adapter.dto.BluetoothAdapterDto;
 
 /**
@@ -10,9 +12,17 @@ import bluetooth.adapter.dto.BluetoothAdapterDto;
 public class BluetoothAdapterDao implements IBluetoothAdapterDao {
 
     private BluetoothAdapter bluetoothAdapter;
+    Context context;
+
+    public BluetoothAdapterDao(Context context) {
+        this.context = context;
+    }
 
     @Override
-    public BluetoothAdapterDto getBluetoothAdapter(BluetoothAdapter bluetoothAdapter) {
+    public BluetoothAdapterDto getBluetoothAdapter() {
+
+        bluetoothAdapter = ((BluetoothManager) context.getSystemService(context.BLUETOOTH_SERVICE))
+                .getAdapter();
 
         BluetoothAdapterDto bluetoothAdapterDto = new BluetoothAdapterDto();
 

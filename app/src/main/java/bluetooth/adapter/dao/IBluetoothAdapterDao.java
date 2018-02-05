@@ -12,5 +12,5 @@ public interface IBluetoothAdapterDao {
     /**
      * @return The bluetooth adapter for the device
      */
-    public BluetoothAdapterDto getBluetoothAdapter(BluetoothAdapter bluetoothAdapter);
+    public BluetoothAdapterDto getBluetoothAdapter();
 }

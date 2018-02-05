@@ -17,5 +17,5 @@ public interface IBluetoothAdapterService {
     /**
      * @return The bluetooth adapter for the device
      */
-    BluetoothAdapterDto getBluetoothAdapterDto(BluetoothAdapter bluetoothAdapter);
+    BluetoothAdapterDto getBluetoothAdapterDto();
 }
