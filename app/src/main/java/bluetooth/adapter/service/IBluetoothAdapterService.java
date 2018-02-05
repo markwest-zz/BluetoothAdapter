@@ -1,5 +1,7 @@
 package bluetooth.adapter.service;
 
+import android.bluetooth.BluetoothAdapter;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -15,5 +17,5 @@ public interface IBluetoothAdapterService {
     /**
      * @return The bluetooth adapter for the device
      */
-    BluetoothAdapterDto getBluetoothAdapterDto() throws IOException, JSONException;
+    BluetoothAdapterDto getBluetoothAdapterDto(BluetoothAdapter bluetoothAdapter);
 }

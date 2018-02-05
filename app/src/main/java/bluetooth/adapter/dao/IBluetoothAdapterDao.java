@@ -1,8 +1,7 @@
 package bluetooth.adapter.dao;
 
+import android.bluetooth.BluetoothAdapter;
 import bluetooth.adapter.dto.BluetoothAdapterDto;
-import java.io.IOException;
-import org.json.JSONException;
 
 /**
  * Interface to retrieve the bluetooth adapter for the device
@@ -13,5 +12,5 @@ public interface IBluetoothAdapterDao {
     /**
      * @return The bluetooth adapter for the device
      */
-    public BluetoothAdapterDto getBluetoothAdapter() throws IOException, JSONException;
+    public BluetoothAdapterDto getBluetoothAdapter(BluetoothAdapter bluetoothAdapter);
 }

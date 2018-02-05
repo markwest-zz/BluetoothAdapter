@@ -3,7 +3,6 @@ package bluetooth.adapter.dto;
 /**
  * Created by Mark on 2/4/2018.
  */
-
 public class BluetoothAdapterDto {
 
     private String address;

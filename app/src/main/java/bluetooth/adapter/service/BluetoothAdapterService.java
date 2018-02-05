@@ -1,10 +1,7 @@
 package bluetooth.adapter.service;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
-import bluetooth.adapter.dao.BluetoothAdapterJsonDao;
+import android.bluetooth.BluetoothAdapter;
+import bluetooth.adapter.dao.BluetoothAdapterDao;
 import bluetooth.adapter.dao.IBluetoothAdapterDao;
 import bluetooth.adapter.dto.BluetoothAdapterDto;
 
@@ -16,11 +13,11 @@ public class BluetoothAdapterService implements IBluetoothAdapterService {
     IBluetoothAdapterDao bluetoothAdapterDao;
 
     public BluetoothAdapterService() {
-        bluetoothAdapterDao = new BluetoothAdapterJsonDao();
+        bluetoothAdapterDao = new BluetoothAdapterDao();
     }
 
     @Override
-    public BluetoothAdapterDto getBluetoothAdapterDto() throws IOException, JSONException {
-        return bluetoothAdapterDao.getBluetoothAdapter();
+    public BluetoothAdapterDto getBluetoothAdapterDto(BluetoothAdapter bluetoothAdapter) {
+        return bluetoothAdapterDao.getBluetoothAdapter(bluetoothAdapter);
     }
 }

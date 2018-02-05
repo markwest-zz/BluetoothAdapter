@@ -3,15 +3,10 @@ package bluetooth.adapter;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-
+import bluetooth.adapter.dto.BluetoothAdapterDto;
 import bluetooth.adapter.service.BluetoothAdapterService;
 import bluetooth.adapter.service.IBluetoothAdapterService;
 
@@ -21,8 +16,7 @@ import bluetooth.adapter.service.IBluetoothAdapterService;
 public class MainActivity extends AppCompatActivity {
 
     IBluetoothAdapterService bluetoothAdapterService;
-
-    private BluetoothAdapter bluetoothAdapter;
+    BluetoothAdapterDto bluetoothAdapterDto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,33 +24,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(R.string.activity_main_title);
 
-        bluetoothAdapterService = new BluetoothAdapterService();
-
         if (savedInstanceState == null) {
 
-            if (getSystemService(Context.BLUETOOTH_SERVICE) != null) {
+            BluetoothAdapter bluetoothAdapter = ((BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE))
+                    .getAdapter();
 
-                bluetoothAdapter = ((BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE))
-                        .getAdapter();
+            if (bluetoothAdapter != null) {
+                bluetoothAdapterService = new BluetoothAdapterService();
+                bluetoothAdapterDto = bluetoothAdapterService.getBluetoothAdapterDto(bluetoothAdapter);
 
-                if (bluetoothAdapter != null) {
-                    TextView view = findViewById(R.id.error_textview);
-                    view.setText(R.string.bt_supported);
-                }
+                String name = bluetoothAdapterDto.getName();
+                TextView view = findViewById(R.id.name_textView);
+                view.setText(name);
+
+                String address = bluetoothAdapterDto.getAddress();
+                view = findViewById(R.id.address_textView);
+                view.setText(address);
+            } else {
+                showErrorText(R.string.bt_not_supported);
             }
-        }
-        else {
-            showErrorText(R.string.bt_not_supported);
         }
     }
 
     private void showErrorText(int messageId) {
-
-        TextView view = findViewById(R.id.error_textview);
+        TextView view = findViewById(R.id.error_textView);
         view.setText(getString(messageId));
-    }
-
-    public void searchBluetoothAdapter(View v) throws IOException, JSONException {
-        bluetoothAdapterService.getBluetoothAdapterDto();
     }
 }
