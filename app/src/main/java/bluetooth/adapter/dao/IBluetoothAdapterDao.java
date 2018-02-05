@@ -1,6 +1,5 @@
 package bluetooth.adapter.dao;
 
-import android.bluetooth.BluetoothAdapter;
 import bluetooth.adapter.dto.BluetoothAdapterDto;
 
 /**
